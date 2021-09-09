@@ -71,7 +71,7 @@ void Mickey::drawBitmapRotate(int xx, int yy, const uint8_t *bitmap, unsigned in
       int ux = (x-xx) * cos(-angle) - (y-yy) * sin(-angle);
       int uy = (x-xx) * sin(-angle) + (y-yy) * cos(-angle);
       
-      if(ux >= startX && ux <= endX && uy >= startY && uy <= endY){
+      if(ux >= startX && ux < endX && uy >= startY && uy < endY){
         if(!getPixel(ux + hX, uy + hY, bitmap)){
           drawPixel(x, y, color);
         }
