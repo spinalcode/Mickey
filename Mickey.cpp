@@ -65,6 +65,14 @@ void Mickey::drawBitmapRotate(int xx, int yy, const uint8_t *bitmap, unsigned in
   int startY = -hY;
   int endY = startY + iHeight;
 
+  // we only need to draw pixels in the circular area the image can reach from its center.
+  // For simplicity, we search the bounding box of this area.
+  // assumes that the vertical dimension of the image is the larger one
+  assert(hX <= hY);
+  int startAreaX = xx - hY;
+  int startAreaY = yy - hY;
+  int endAreaX = 200 - startAreaX;
+  int endAreaY = 200 - startAreaY;
   for (int x = 0; x < 200; x++) {
     yield();
     for (int y = 0; y < 200; y++) {
